@@ -490,7 +490,8 @@ export class GlassEaselMiniprogramWebpackPlugin implements WebpackPluginInstance
         // eslint-disable-next-line no-restricted-syntax
         for (const m of modules) {
           if (m.type !== 'javascript/auto') continue
-          const module = m as NormalModule
+          if (!(m instanceof NormalModule)) continue
+          const module = m
           if (module.resource === path.join(codeRoot, 'index.js')) {
             indexModule = module
             continue
